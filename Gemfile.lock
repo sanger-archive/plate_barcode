@@ -1,11 +1,11 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    activerecord (2.3.8)
-      activesupport (= 2.3.8)
+    activerecord (2.3.15)
+      activesupport (= 2.3.15)
     activerecord-oracle_enhanced-adapter (1.2.3)
       activerecord (>= 2.0.0)
-    activesupport (2.3.8)
+    activesupport (2.3.15)
     cgi_multipart_eof_fix (2.5.0)
     daemons (1.1.0)
     fastthread (1.0.7)
@@ -15,8 +15,12 @@ GEM
       daemons (>= 1.0.3)
       fastthread (>= 1.0.1)
       gem_plugin (>= 0.2.3)
+    mongrel_cluster (1.0.5)
+      gem_plugin (>= 0.2.3)
+      mongrel (>= 1.0.2)
     mongrel_experimental (1.1)
       mongrel (= 1.1)
+    mysql (2.8.1)
     rack (1.2.1)
     ruby-oci8 (1.0.7)
     sinatra (1.0)
@@ -26,8 +30,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (~> 2.2)
+  activerecord (~> 2.3.15)
   activerecord-oracle_enhanced-adapter (= 1.2.3)
+  mongrel_cluster
   mongrel_experimental
+  mysql (~> 2.8.1)
   ruby-oci8 (= 1.0.7)
   sinatra (~> 1.0)
