@@ -18,8 +18,8 @@ end
 # connection should be made to behave like one to an Oracle DB.
 ActiveRecord::Base.establish_connection(YAML::load(File.open(File.join(APP_ROOT,'config/database.yml')))[RAILS_ENV])
 if RAILS_ENV == 'development'
-  ActiveRecord::ConnectionAdapters::MysqlAdapter
-  class ActiveRecord::ConnectionAdapters::MysqlAdapter
+  ActiveRecord::ConnectionAdapters::Mysql2Adapter
+  class ActiveRecord::ConnectionAdapters::Mysql2Adapter
     def next_sequence_value(name)
       @sequence ||= 0
       @sequence += 1
