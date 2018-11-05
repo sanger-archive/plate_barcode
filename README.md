@@ -9,6 +9,10 @@ Sinatra application which will connnect to an oracle database called SNP and ret
 Usage
 -----
 
-Run: `bundle exec rackup -E development -p 3011 -I . config.ru`
+In the repository base directory run:
 
-Point your browser at: `http://localhost:3011`
+```
+bundle exec rackup -E development -p 3011 config.ru
+```
+
+Then point your browser at: `http://localhost:3011`
