@@ -10,7 +10,7 @@ RAILS_ENV = (ENV['RAILS_ENV'] ||= 'development')
 helpers do
   def get_version_string
     require File.join(APP_ROOT,'lib/versionstrings')
-    Deployed::VERSION_STRING
+    "#{Deployed::APP_NAME} [#{RAILS_ENV}] #{Deployed::RELEASE_NAME}"
   end
 end
 

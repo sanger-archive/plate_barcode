@@ -25,7 +25,7 @@ module Deployed
     end
 
     def revision_short
-      @revision_short ||= revision.slice 0..6
+      @revision_short ||= revision&.slice 0..6
     end
 
     def label
