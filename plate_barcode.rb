@@ -40,7 +40,7 @@ class Barcode
   private_class_method :new
 
   def number
-    @number
+    @number.to_i
   end
 
   def present_in_xml
