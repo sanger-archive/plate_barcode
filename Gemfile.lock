@@ -21,7 +21,7 @@ GEM
     mongrel_experimental (1.1)
       mongrel (= 1.1)
     mysql (2.8.1)
-    rack (1.2.1)
+    rack (2.0.8)
     ruby-oci8 (2.1.5)
     sinatra (1.0)
       rack (>= 1.0)
