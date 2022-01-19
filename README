@@ -1,6 +1,0 @@
-This is a Sinatra application which will connnect to an oracle database called SNP and return a new plate barcode ID.
-To run it:
-export RAILS_ENV=development && ruby plate_barcode.rb -p 3011
-
-To view it:
-http://localhost:3011
