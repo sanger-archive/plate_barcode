@@ -23,7 +23,9 @@ GEM
     minitest (5.11.3)
     mustermann (1.0.3)
     mysql2 (0.5.2)
-    puma (3.12.1)
+    nio4r (2.5.8)
+    puma (4.3.9)
+      nio4r (~> 2.0)
     rack (2.0.5)
     rack-protection (2.0.4)
       rack
