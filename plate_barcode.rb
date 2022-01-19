@@ -10,7 +10,7 @@ RAILS_ENV = (ENV['RAILS_ENV'] ||= 'development')
 helpers do
   def get_version_string
     require File.join(APP_ROOT,'lib/versionstrings')
-    Deployed::VERSION_STRING
+    "#{Deployed::APP_NAME} [#{RAILS_ENV}] #{Deployed::RELEASE_NAME}"
   end
 end
 
@@ -18,8 +18,8 @@ end
 # connection should be made to behave like one to an Oracle DB.
 ActiveRecord::Base.establish_connection(YAML::load(File.open(File.join(APP_ROOT,'config/database.yml')))[RAILS_ENV])
 if RAILS_ENV == 'development'
-  ActiveRecord::ConnectionAdapters::MysqlAdapter
-  class ActiveRecord::ConnectionAdapters::MysqlAdapter
+  ActiveRecord::ConnectionAdapters::Mysql2Adapter
+  class ActiveRecord::ConnectionAdapters::Mysql2Adapter
     def next_sequence_value(name)
       @sequence ||= 0
       @sequence += 1
