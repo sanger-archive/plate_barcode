@@ -6,7 +6,8 @@ gem 'builder'
 gem 'puma'
 
 group :development do
-  gem 'mysql2'
+  gem 'activerecord-nulldb-adapter'
+  gem 'pry'
 end
 
 group :deployment do

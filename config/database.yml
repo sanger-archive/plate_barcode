@@ -1,5 +1,5 @@
 development:
-  adapter: mysql2
+  adapter: nulldb
   username: root
   password:
   database: plate_barcode_development
