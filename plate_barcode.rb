@@ -17,7 +17,8 @@ end
 # Establish a connection to the database.  If we're in development mode then the database
 # connection should be made to behave like one to an Oracle DB.
 ActiveRecord::Base.establish_connection(YAML::load(File.open(File.join(APP_ROOT,'config/database.yml')))[RAILS_ENV])
-if RAILS_ENV == 'development'
+
+if ['development','test'].include?(RAILS_ENV)
   ActiveRecord::ConnectionAdapters::NullDBAdapter
   class ActiveRecord::ConnectionAdapters::NullDBAdapter
     def next_sequence_value(name)
