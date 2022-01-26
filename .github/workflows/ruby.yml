@@ -8,6 +8,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     name: Ruby Test
+    env:
+      BUNDLE_WITHOUT: deployment
 
     steps:
       - uses: actions/checkout@v2
@@ -22,6 +24,8 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     name: Ruby lint and format
+    env:
+      BUNDLE_WITHOUT: deployment
 
     steps:
       - uses: actions/checkout@v2
