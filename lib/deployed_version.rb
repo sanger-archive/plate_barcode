@@ -48,13 +48,19 @@ module Deployed
 
     def version_hash
       @version_hash ||=
-        /\Arelease-(?<major>\d+)\.(?<minor>\d+)\.?(?<patch>\S*)\z/.match(label)
+        /\A(?:release-|v){0,1}(?<major>\d+)\.(?<minor>\d+)\.?(?<patch>\S*)\z/
+          .match(label)
     end
 
     # rubocop:disable Style/NumericPredicate
     def version_label
-      major == 0 && minor == 0 && patch == 0 ? 'WIP' : "#{major}.#{minor}.#{patch}"
+      if major == 0 && minor == 0 && patch == 0
+        'WIP'
+      else
+        "#{major}.#{minor}.#{patch}"
+      end
     end
+
     # rubocop:enable Style/NumericPredicate
 
     private
@@ -85,7 +91,7 @@ module Deployed
     end
 
     def read_file(filename)
-      File.open(File.join(APP_ROOT, filename), 'r', &:readline)
+      File.read(filename, 'r')
     rescue Errno::ENOENT, EOFError
       ''
     end
