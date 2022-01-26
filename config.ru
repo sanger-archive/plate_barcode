@@ -1,5 +1,8 @@
 #\ -w -p 3011
-require "./plate_barcode"
+# frozen_string_literal: true
+
+require './plate_barcode'
+
 disable :run, :reload
 
 run Sinatra::Application

@@ -1,0 +1,4 @@
+# Ignore artifacts:
+.bundle
+spec/examples.txt
+/vendor
