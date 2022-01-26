@@ -14,6 +14,10 @@ inherit_gem:
   prettier: rubocop.yml
 AllCops:
   NewCops: enable
+  Exclude:
+    # CI installs gems in the vendor directory, which causes rubocop to try
+    # and cop our gems. We don't want it to.
+    - vendor/**/*
 Metrics/BlockLength:
   IgnoredMethods:
     - describe
