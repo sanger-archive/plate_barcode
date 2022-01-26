@@ -2,7 +2,9 @@
 
 require 'open3'
 
+# Handles release information, displayed when accessing the homepage
 module Deployed
+  # Holds information about the git commit extracted from files created on build
   class RepoData
     def tag
       @tag ||= git_tag || read_file('TAG').strip.presence
@@ -40,21 +42,20 @@ module Deployed
       @minor ||= version(:minor)
     end
 
-    def extra
-      @extra ||= version(:extra)
+    def patch
+      @patch ||= version(:patch)
     end
 
     def version_hash
-      @version_hash ||= /\Arelease-(?<major>\d+)\.(?<minor>\d+)\.?(?<extra>\S*)\z/.match(label)
+      @version_hash ||=
+        /\Arelease-(?<major>\d+)\.(?<minor>\d+)\.?(?<patch>\S*)\z/.match(label)
     end
 
+    # rubocop:disable Style/NumericPredicate
     def version_label
-      if major == 0 && minor == 0 && extra == 0
-        'WIP'
-      else
-        "#{major}.#{minor}.#{extra}"
-      end
+      major == 0 && minor == 0 && patch == 0 ? 'WIP' : "#{major}.#{minor}.#{patch}"
     end
+    # rubocop:enable Style/NumericPredicate
 
     private
 
@@ -90,7 +91,7 @@ module Deployed
     end
   end
 
-  ENVIRONMENT = "#{ RAILS_ENV }"
+  ENVIRONMENT = RAILS_ENV.to_s
 
   REPO_DATA = RepoData.new
 
@@ -101,20 +102,15 @@ module Deployed
 
   MAJOR = REPO_DATA.major
   MINOR = REPO_DATA.minor
-  EXTRA = REPO_DATA.extra
+  PATCH = REPO_DATA.patch
   BRANCH = REPO_DATA.label.presence || 'unknown_branch'
   COMMIT = REPO_DATA.revision.presence || 'unknown_revision'
   ABBREV_COMMIT = REPO_DATA.revision_short.presence || 'unknown_revision'
 
   VERSION_STRING = "#{APP_NAME} #{VERSION_ID} [#{ENVIRONMENT}]"
   VERSION_COMMIT = "#{BRANCH}@#{ABBREV_COMMIT}"
-  REPO_URL       = REPO_DATA.release_url.presence || '#'
-  HOSTNAME       = Socket.gethostname
+  REPO_URL = REPO_DATA.release_url.presence || '#'
+  HOSTNAME = Socket.gethostname
 
-  require 'ostruct'
-  DETAILS = OpenStruct.new(
-    :name        => APP_NAME,
-    :version     => VERSION_ID,
-    :environment => ENVIRONMENT
-  )
+  DETAILS = { version: VERSION_ID, environment: ENVIRONMENT }.freeze
 end
